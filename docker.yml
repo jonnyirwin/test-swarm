@@ -1,0 +1,23 @@
+---
+- name: Install docker
+  shell: "curl -fsSL https://get.docker.com/ | sh"
+  args:
+    warn: no 
+
+- name: Start docker daemon
+  systemd:
+    name: docker
+    enabled: yes
+    state: started
+
+- name: Ensure docker group exists
+  group:
+    name: docker
+    state: present
+
+- name: Add docker group to vagrant user
+  user: 
+    name: vagrant
+    append: yes
+    groups: docker
+

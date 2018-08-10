@@ -1,0 +1,17 @@
+- hosts: all
+  gather_facts: false
+  become: true
+  tasks:
+    - include: docker.yml
+
+    - name: Check swarm is active
+      shell: 'docker info | grep "Swarm: active"'
+      register: swarm_active
+      ignore_errors: true
+
+    - name: Init docker swarm
+      when: swarm_active.rc == 1
+      shell: docker swarm init --listen-addr :2377 --advertise-addr {{ manager_ip }}
+
+    - name: Get docker swarm token
+      shell: docker swarm join-token -q worker > /vagrant/worker_token
