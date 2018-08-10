@@ -14,28 +14,28 @@ You need to have the following installed:
 
 Clone this repository.  In the folder the repository is cloned into (assuming the above dependencies are installed), type:
 
-'''
+```
 vagrant up
-'''
+```
 
 When this task completes, a 3-node docker swarm should be up and running (with 1 manager and 2 worker nodes).
 
 To access the manager node, type:
 
-'''
+```
 vagrant ssh manager
-'''
+```
 
 And to access the 2 worker nodes type:
 
-'''
+```
 vagrant ssh worker-1
-'''
+```
 
 or
 
-'''
+```
 vagrant ssh worker-2
-'''
+```
 
 As this is designed for testing purposes only, docker commands can be ran without `sudo`.
